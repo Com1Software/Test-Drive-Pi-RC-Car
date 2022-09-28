@@ -22,7 +22,7 @@ func main() {
 	pca0.SetChannel(1, 0, 130)
 	servo0 := pca0.ServoNew(0, nil)
 	servo1 := pca0.ServoNew(1, nil)
-
+	speed:=10
 	for i := 0; i < 130; i++ {
 		servo0.Angle(speed)
 		servo1.Angle(i)
