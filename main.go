@@ -20,13 +20,15 @@ func main() {
 		log.Fatal(err)
 	}
 	pca0.SetChannel(1, 0, 130)
-	servo0 := pca0.ServoNew(0, nil)
 	servo1 := pca0.ServoNew(1, nil)
-	speed:=10
-	for i := 0; i < 130; i++ {
-		servo0.Angle(speed)
-		servo1.Angle(i)
-		time.Sleep(10 * time.Millisecond)
+	servo0 := pca0.ServoNew(0, nil)
+	speed := 54
+	for x := 0; x < 10; x++ {
+		for i := 0; i < 130; i++ {
+			servo1.Angle(speed)
+			servo0.Angle(i)
+			time.Sleep(10 * time.Millisecond)
+		}
 	}
 
 	servo0.Fraction(0.5)
