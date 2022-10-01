@@ -15,20 +15,32 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	pca0, err := pca9685.New(i2c, nil)
-	if err != nil {
-		log.Fatal(err)
+	pca0, err0 := pca9685.New(i2c, nil)
+	if err0 != nil {
+		log.Fatal(err0)
 	}
-	pca0.SetChannel(1, 0, 130)
-	servo1 := pca0.ServoNew(1, nil)
+	pca1, err1 := pca9685.New(i2c, nil)
+	if err1 != nil {
+		log.Fatal(err1)
+	}
+	pca1.SetChannel(1, 0, 130)
+	pca0.SetChannel(0, 0, 130)
+	servo1 := pca1.ServoNew(1, nil)
 	servo0 := pca0.ServoNew(0, nil)
 	test := 2
 	switch {
 	case test == 2:
-		for X := 0; X < 1000; X++ {
-			i := 40
+		for x := 0; x < 200; x++ {
+			i := 50
 			//	for i := 0; i < 64; i++ {
 			servo1.Angle(i)
+			// if x < 100 || x > 90 {
+			if x > 100 {
+				servo0.Angle(65)
+			} else {
+				servo0.Angle(45)
+
+			}
 			time.Sleep(10 * time.Millisecond)
 			//	}
 		}
